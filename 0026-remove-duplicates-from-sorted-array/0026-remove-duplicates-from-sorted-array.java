@@ -1,14 +1,18 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) return 0;
-
-        int i = 0;  // slow pointer
-        for (int j = 1; j < nums.length; j++) {
-            if (nums[i] != nums[j]) {
-                i++;
-                nums[i] = nums[j]; // copy unique element forward
-            }
+    Set<Integer> set = new TreeSet<>();
+        int i=0;
+        while(i<nums.length){
+            set.add(nums[i]);
+            i++;
         }
-        return i + 1; // number of unique elements
+
+          int j= 0;
+        for (int num : set) {
+            nums[j++] = num; // overwrite nums[] in-place
+        }
+
+
+        return set.size(); // number of unique elements
     }
 }
